@@ -20,8 +20,8 @@
 
         var isMouseDown = false;
         var mouse = {
-            x: 0,
-            y: 0
+            x: undefined,
+            y: undefined
         };
 
         function startDrawing(event) {
@@ -47,6 +47,7 @@
             isMouseDown = false;
         }
 
+        //thực hiện vẽ
         canvas.addEventListener('mousedown', startDrawing);
         canvas.addEventListener('mousemove', drawLine);
         canvas.addEventListener('mouseup', stopDrawing);
