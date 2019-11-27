@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tạo Paint Tool</title>
+
+</head>
+
+<body>
+    <canvas class="canvas"></canvas>
+
+    <script>
+        var canvas = document.querySelector('.canvas');
+        var ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        var isMouseDown = false;
+        var mouse = {
+            x: 0,
+            y: 0
+        };
+
+        function startDrawing(event) {
+            isMouseDown = true;
+            mouse.x = event.offsetX;
+            mouse.y = event.offsetY;
+        }
+
+        function drawLine(event) {
+            if (isMouseDown) {
+                var newX = event.offsetX;
+                var newY = event.offsetY;
+                ctx.beginPath();
+                ctx.moveTo(mouse.x, mouse.y);
+                ctx.lineTo(newX, newY);
+                ctx.stroke();
+                mouse.x = newX;
+                mouse.y = newY;
+            }
+        }
+
+        function stopDrawing() {
+            isMouseDown = false;
+        }
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', drawLine);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+
+    </script>
+</body>
+
+</html>
